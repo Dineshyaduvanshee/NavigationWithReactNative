@@ -5,6 +5,33 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
 
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{
+        headerStyle: { backgroundColor: 'blue' },
+        headerTintColor: 'cyan',
+        headerTitleStyle: {
+          fontSize: 25
+        }
+      }}>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Register" component={Register} />
+
+        <Stack.Screen name="Login" component={Login}
+          options={{
+            headerStyle: { backgroundColor: 'blue' },
+            headerTintColor: 'orange',
+            headerTitleStyle: {
+              fontSize: 25
+            }
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
 const Home = (props) => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -32,17 +59,6 @@ const Login = (props) => {
   );
 };
 
-const App = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Login" component={Login} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
 
 export default App;
 
