@@ -1,11 +1,19 @@
-import { Text, View, Button } from "react-native";
+import { Text, View, Button, TextInput } from "react-native";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Login } from "./components/Login";
+import { Register } from "./Register";
+import { Home } from "./components/Home";
+
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  const btnAction = () =>{
+    console.warn("rifht Button pressed");
+    
+  }
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
@@ -20,6 +28,8 @@ const App = () => {
 
         <Stack.Screen name="Login" component={Login}
           options={{
+            headerTitle:()=><Button title="right" onPress={btnAction}/>,
+            headerRight:()=><Header/>,
             headerStyle: { backgroundColor: 'blue' },
             headerTintColor: 'orange',
             headerTitleStyle: {
@@ -32,33 +42,11 @@ const App = () => {
   );
 };
 
-const Home = (props) => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 30 }}> Home Screen</Text>
-      <Button title="Go to Login" onPress={() => props.navigation.navigate("Login")} />
-    </View>
-  );
-};
-
-const Register = (props) => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 30 }}> Register Screen</Text>
-      <Button title="Go to Login" onPress={() => props.navigation.navigate("Login")} />
-    </View>
-  );
-};
-
-const Login = (props) => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 30 }}> Login Screen</Text>
-      <Button title="Go to Register" onPress={() => props.navigation.navigate("Register")} />
-    </View>
-  );
-};
-
+const Header = () =>{
+  return(
+    <TextInput placeholder="name" style={{backgroundColor:'#fff'}}/>
+  )
+}
 
 export default App;
 
